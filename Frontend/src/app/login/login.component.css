@@ -1,0 +1,37 @@
+.poppins {
+  font-family: 'Poppins', sans-serif;
+}
+
+.login-container {
+  height: 100vh;
+  overflow-y: auto;
+}
+
+.logo-image {
+  width: 35px;
+}
+
+.logo-text {
+  font-size: 1.3rem;
+}
+
+.text-quote {
+  color: #868686;
+}
+
+::placeholder {
+  font-size: 0.8rem;
+  font-family: sans-serif;
+}
+
+input {
+  font-family: sans-serif;
+  color: #000;
+  font-size: 0.9rem;
+
+}
+input:focus {
+  font-family: sans-serif;
+  color: #000;
+  font-size: 0.9rem;
+}

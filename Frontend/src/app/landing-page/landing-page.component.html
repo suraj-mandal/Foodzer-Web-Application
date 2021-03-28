@@ -1,0 +1,349 @@
+<div *ngIf="!loadingBar; else loadingTemplate">
+  <nav id="header" class="navbar container py-3 navbar-expand-sm navbar-light poppins">
+    <a class="navbar-brand font-weight-bold" href="#">Foodzer</a>
+    <button class="navbar-toggler"
+            type="button" data-toggle="collapse"
+            data-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item active ml-3">
+          <a routerLink="/intro" class="nav-link" fragment="">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item ml-3">
+          <a routerLink="/intro" class="nav-link" fragment="features-list">Features</a>
+        </li>
+        <li class="nav-item ml-3">
+          <a class="nav-link" routerLink="/intro" fragment="plan-section">Plans</a>
+        </li>
+        <li class="nav-item ml-3">
+          <a class="nav-link" routerLink="/intro" fragment="about-section">About</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- HEADER SECTION -->
+  <div class="container my-5">
+    <header class="row m-0 p-0">
+      <div
+        class="col-12 col-lg-7 h-100 d-flex align-items-center justify-content-center justify-content-lg-start poppins">
+        <div
+          class="d-flex justify-content-center align-items-center justify-content-lg-start align-items-lg-start flex-column text-center text-lg-left">
+          <div id="main-banner" class="mt-4 mb-3 mx-2">
+            <h1 class="font-weight-bold">Get the right food for you <br> anytime, anywhere</h1>
+          </div>
+          <div id="sub-banner" class="mx-2 mt-3">
+            <h6 class="text-muted" style="line-height: 1.8rem;">
+              With foodzer, you can effectively find the <br>food of your choice
+              and create your ultimate meal <br> that suits your persona.
+            </h6>
+          </div>
+          <div id="auth-btn" class="mx-2 mt-4 d-flex">
+            <button (click)="goToAuth('login');"
+                    class="btn bg-blue text-white mr-3 d-flex px-4 shadow align-items-center justify-content-center ripple-blue">
+              <p class="font-weight-bold mb-0">Login</p>
+            </button>
+            <button (click)="goToAuth('register')"
+                    class="btn bg-gray mr-3 d-flex px-4 shadow-sm align-items-center justify-content-center ripple-gray">
+              <p class="font-weight-bold mb-0">Register</p>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="d-none d-lg-block col-lg-5 h-100 w-100">
+        <img src="assets/landing-page/landing-page-header.svg" alt="header image" class="img-fluid mt-4">
+      </div>
+    </header>
+  </div>
+  <!-- DIVIDER SECTION START -->
+  <div class="container py-3">
+    <div class="row">
+      <div class="col-4"></div>
+      <div class="col-4">
+        <div class="divider div-transparent div-dot"></div>
+      </div>
+      <div class="col-4"></div>
+    </div>
+  </div>
+  <!-- DIVIDER SECTION END-->
+  <main class="mt-5 my-3 container w-100">
+    <div class="d-flex align-items-center justify-content-center">
+      <div class="text-center">
+        <h2 id="feature-section" class="poppins font-weight-bold">Features</h2>
+        <em>Features marked with <span class="font-weight-bolder">Pro</span> are accessible to logged in users</em>
+      </div>
+    </div>
+    <div id="features-list" class="my-5">
+      <div class="row m-0 p-0" id="home">
+        <div class="col-12 d-none col-lg-6 mt-5 d-lg-flex flex-column align-items-center justify-content-center">
+          <img src="assets/landing-page/food-search.svg" alt="food-search" class="img-fluid"
+               style="max-height: 350px; max-width: 350px;">
+        </div>
+        <div class="col-12 col-lg-6 d-flex flex-column align-items-center justify-content-center">
+          <div class="text-center text-lg-left d-flex flex-column align-items-center align-items-lg-start">
+            <h4 class="poppins font-weight-bolder">Search for your food, conveniently!</h4>
+            <p class="poppins text-muted mt-3" style="font-size: 0.9rem; line-height: 1.5rem; max-width: 90%;">
+              With foodzer you can just search for the food, and get instant results based on any brand you like.
+              Our catalog contains millions of food items for you to choose upon and view. You can filter the food items
+              based on your brands, or get an non-branded food as well.
+              There is always something for someone!
+            </p>
+            <div class="search shadow mt-3">
+              <input (input)="showValue($event)" type="text" placeholder="search for a food"
+                     (submit)="showValue($event)"/>
+              <div class="symbol d-flex">
+                <div>
+                  <svg class="cloud">
+                    <use xlink:href="#cloud"/>
+                  </svg>
+                  <svg class="lens">
+                    <use xlink:href="#lens"/>
+                  </svg>
+                </div>
+              </div>
+            </div>
+
+            <!-- SVG -->
+            <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+              <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 35 35" id="cloud">
+                <path d="M31.714,25.543c3.335-2.17,4.27-6.612,2.084-9.922c-1.247-1.884-3.31-3.077-5.575-3.223h-0.021
+	C27.148,6.68,21.624,2.89,15.862,3.931c-3.308,0.597-6.134,2.715-7.618,5.708c-4.763,0.2-8.46,4.194-8.257,8.919
+	c0.202,4.726,4.227,8.392,8.991,8.192h4.873h13.934C27.784,26.751,30.252,26.54,31.714,25.543z"/>
+              </symbol>
+              <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" id="lens">
+                <path d="M15.656,13.692l-3.257-3.229c2.087-3.079,1.261-7.252-1.845-9.321c-3.106-2.068-7.315-1.25-9.402,1.83
+	s-1.261,7.252,1.845,9.32c1.123,0.748,2.446,1.146,3.799,1.142c1.273-0.016,2.515-0.39,3.583-1.076l3.257,3.229
+	c0.531,0.541,1.404,0.553,1.95,0.025c0.009-0.008,0.018-0.017,0.026-0.025C16.112,15.059,16.131,14.242,15.656,13.692z M2.845,6.631
+	c0.023-2.188,1.832-3.942,4.039-3.918c2.206,0.024,3.976,1.816,3.951,4.004c-0.023,2.171-1.805,3.918-3.995,3.918
+	C4.622,10.623,2.833,8.831,2.845,6.631L2.845,6.631z"/>
+              </symbol>
+            </svg>
+
+          </div>
+        </div>
+      </div>
+      <div *ngIf="this.displayTable" class="container my-4">
+        <div class="shadow overflow-hidden rounded-sm">
+          <!--      Table header-->
+          <div class="row w-100 m-0 p-0 text-white font-weight-bolder" style="background-color: #303EF0;">
+            <div class="col-4 pl-3 pr-2 py-3 d-flex align-items-center">
+              <div>Food</div>
+
+            </div>
+            <div class="col-2 px-1 py-3 d-flex align-items-center">
+              <div>Type</div>
+            </div>
+            <div class="col-3 px-1 py-3 d-flex align-items-center">
+              <div>Brand</div>
+            </div>
+            <div class="col-3 px-1 py-3 d-flex align-items-center">
+              <div>Published</div>
+            </div>
+          </div>
+          <!--      For the table body-->
+          <div class="custom-scrollbar-css bg-light" style="overflow-y: auto; max-height: 65vh;">
+            <div class="row m-0 p-0 w-100 food-row poppins rounded cursor-pointer-custom"
+                 *ngFor="let currentFood of foodData"
+            >
+              <div class="col-4 p-2 py-3 pl-3 d-flex align-items-center">
+                <small class="m-0 p-0 font-weight-bolder">{{currentFood.lowercaseDescription}}</small>
+              </div>
+              <div class="col-2 p-2 py-3 d-flex align-items-center">
+                <small class="p-0 m-0">{{currentFood.dataType}}</small>
+              </div>
+              <div *ngIf="currentFood.brandOwner !== undefined; else nobrand"
+                   class="col-3 p-2 py-3 d-flex align-items-center">
+                <small class="m-0 p-0">{{currentFood.brandOwner.toLowerCase()}}</small>
+              </div>
+              <div class="col-2 p-2 py-3 d-flex align-items-center">
+                <small class="m-0 p-0">{{currentFood.publishedDate}}</small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row m-0 py-5 my-5" id="meal-creator">
+        <div class="col-12 col-lg-6 d-flex flex-column align-items-center justify-content-center">
+          <div class="text-center text-lg-left d-flex flex-column align-items-center align-items-lg-start">
+            <h4 class="poppins font-weight-bolder">Create the meal that suits you!</h4>
+            <p class="poppins text-muted mt-3" style="font-size: 0.9rem; line-height: 1.5rem; max-width: 90%;">
+              With foodzer's intuitive interface you can easily add your foods from search to your meals, and create the
+              perfect meal of your choice, or your mood or both. We also have the feature to get the total nutritional value
+              in case you are health conscious!
+            </p>
+          </div>
+        </div>
+        <div class="col-12 col-lg-6 mt-5 d-none d-lg-flex flex-column align-items-center justify-content-center">
+          <img src="assets/landing-page/meal-creator.svg" alt="food-search" class="img-fluid"
+               style="max-height: 350px; max-width: 350px;">
+        </div>
+      </div>
+      <div class="row m-0 p-0" id="favourites">
+        <div class="col-12 col-lg-6 mt-5 d-none d-lg-flex flex-column align-items-center justify-content-center">
+          <img src="assets/landing-page/favourites.svg" alt="food-search" class="img-fluid"
+               style="max-height: 350px; max-width: 350px;">
+        </div>
+        <div class="col-12 col-lg-6 d-flex flex-column align-items-center justify-content-center">
+          <div class="text-center text-lg-left d-flex flex-column align-items-center align-items-lg-start">
+            <h4 class="poppins font-weight-bolder">Save foods you love for later!</h4>
+            <p class="poppins text-muted mt-3" style="font-size: 0.9rem; line-height: 1.5rem; max-width: 90%;">
+              Crazy about a food that you got from our catalog, or you are frequently using some food items regualarly to the meal!
+              Wont it be great if you could just save them! We have got you covered. You can save the foods you absolutely love to
+              your favourites and access them easily whenever you want. Great! isn't it?
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="row m-0 py-5 my-5" id="recommended">
+        <div class="col-12 col-lg-6 d-flex flex-column align-items-center justify-content-center">
+          <div class="text-center text-lg-left d-flex flex-column align-items-center align-items-lg-start">
+            <h4 class="poppins font-weight-bolder">Recommendations are great! isn't it?</h4>
+            <p class="poppins text-muted mt-3" style="font-size: 0.9rem; line-height: 1.5rem; max-width: 90%;">
+              Using our beloved application for the first time? Quite confused which foods you wanna choose for you next great
+              meal. Why not look at our recommendation section? It has catalog of great foods recommended by users just like you. And
+              moreover it is community driven and have been added by users just like you! So give it a try!
+            </p>
+          </div>
+        </div>
+        <div class="col-12 col-lg-6 mt-5 d-none d-lg-flex flex-column align-items-center justify-content-center">
+          <img src="assets/landing-page/recommended.svg" alt="food-search" class="img-fluid"
+               style="max-height: 350px; max-width: 350px;">
+        </div>
+      </div>
+    </div>
+
+  </main>
+  <!-- DIVIDER SECTION START -->
+  <div class="container">
+    <div class="row py-4">
+      <div class="col-4"></div>
+      <div class="col-4">
+        <div class="divider div-transparent div-dot mt-2"></div>
+      </div>
+      <div class="col-4"></div>
+    </div>
+  </div>
+  <!-- DIVIDER SECTION END-->
+  <section class="py-5" id="plan-section">
+    <div class="d-flex align-items-center justify-content-center">
+      <div class="text-center">
+        <h2 class="poppins font-weight-bold">Plans</h2>
+        <em>Get the benefits by being a logged in user as opposed to anonymous user</em>
+      </div>
+    </div>
+    <section class="pricing my-5 py-5">
+      <div class="container">
+        <div class="row d-lg-flex justify-content-lg-center">
+          <!-- Free Tier -->
+          <div class="col-lg-4 poppins">
+            <div class="card mb-5 mb-lg-0">
+              <div class="card-body">
+                <h5 class="card-title text-muted text-uppercase text-center">Free</h5>
+                <h6 class="card-price text-center font-weight-bolder">$0<span class="period">/month</span></h6>
+                <hr>
+                <ul class="fa-ul">
+                  <li><span class="fa-li"><i class="fas fa-check"></i></span>Single User</li>
+                  <li class="text-muted"><span class="fa-li"><i class="fas fa-times"></i></span>Sign up required</li>
+                  <li><span class="fa-li"><i class="fas fa-check"></i></span>Food search</li>
+                  <li class="text-muted"><span class="fa-li"><i class="fas fa-times"></i></span>Meal creator access</li>
+                  <li class="text-muted"><span class="fa-li"><i class="fas fa-times"></i></span>Adding favourite food access</li>
+                  <li class="text-muted"><span class="fa-li"><i class="fas fa-times"></i></span>Recommendation foods access</li>
+                </ul>
+                <a routerLink="/intro" fragment="header" class="btn btn-block btn-primary text-uppercase">Current Plan</a>
+              </div>
+            </div>
+          </div>
+          <!-- Plus Tier -->
+          <div class="col-lg-4 poppins">
+            <div class="card mb-5 mb-lg-0">
+              <div class="card-body">
+                <h5 class="card-title text-muted text-uppercase text-center">Pro</h5>
+                <h6 class="card-price text-center font-weight-bolder">$0<span class="period">/month</span></h6>
+                <hr>
+                <ul class="fa-ul">
+                  <li><span class="fa-li"><i class="fas fa-check"></i></span>Single User</li>
+                  <li><span class="fa-li"><i class="fas fa-check"></i></span>Sign up required</li>
+                  <li><span class="fa-li"><i class="fas fa-check"></i></span>Food search</li>
+                  <li><span class="fa-li"><i class="fas fa-check"></i></span>Meal creator access</li>
+                  <li><span class="fa-li"><i class="fas fa-check"></i></span>Adding favourite food access</li>
+                  <li><span class="fa-li"><i class="fas fa-check"></i></span>Recommendation foods access</li>
+                </ul>
+                <button (click)="goToAuth('register')" class="btn btn-block btn-primary text-uppercase">Sign Up</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </section>
+  <!-- DIVIDER SECTION START -->
+  <div class="container mb-5">
+    <div class="row py-2">
+      <div class="col-4"></div>
+      <div class="col-4">
+        <div class="divider div-transparent div-dot mt-1"></div>
+      </div>
+      <div class="col-4"></div>
+    </div>
+  </div>
+  <!-- DIVIDER SECTION END-->
+  <section id="about-section">
+    <div class="d-flex align-items-center justify-content-center">
+      <div class="text-center">
+        <h2 class="poppins font-weight-bold">Our Team</h2>
+        <em>People who accomplished this wonderful project</em>
+      </div>
+    </div>
+    <div class="row m-0 p-0 py-5">
+      <div class="container card-deck mx-auto">
+        <div class="card shadow border-0">
+          <img class="card-img-top" src="assets/landing-page/arindam.jpg" alt="Card image cap">
+          <div class="card-body">
+            <h5 class="card-title poppins font-weight-bolder">Arindam</h5>
+            <p class="card-text">It has been a roller coaster journey of learning for me! But I enjoyed it to the fullest, thanks to my team</p>
+            <p class="card-text"><small class="text-muted">Designer and Tester</small></p>
+          </div>
+        </div>
+        <div class="card shadow border-0">
+          <img class="card-img-top" src="assets/landing-page/manasa.jpg" alt="Card image cap">
+          <div class="card-body">
+            <h5 class="card-title poppins font-weight-bolder">Manasa</h5>
+            <p class="card-text">Very happy with the overall performance of our team and we finally accomplished a great feat!</p>
+            <p class="card-text"><small class="text-muted">Developer and Tester</small></p>
+          </div>
+        </div>
+        <div class="card shadow border-0">
+          <img class="card-img-top" src="assets/landing-page/suraj.jpg" alt="Card image cap">
+          <div class="card-body">
+            <h5 class="card-title poppins font-weight-bolder">Suraj</h5>
+            <p class="card-text">I am happy that we were able to complete the project finally, thanks to my team members as well as our mentor!</p>
+            <p class="card-text"><small class="text-muted">Developer and Designer</small></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="bg-dark py-5 d-lg-flex align-items-center justify-content-center">
+    <p class="text-center font-weight-bolder text-white m-0 poppins">
+      &copy; Foodzer inc.
+      <span class="font-weight-normal mx-2">|</span>
+      <span class="ml-1">2021</span> </p>
+  </section>
+  <ng-template #nobrand>
+    <div class="col-3 p-2 py-3 d-flex align-items-center">
+      <small class="m-0 p-0">No brand</small>
+    </div>
+  </ng-template>
+
+</div>
+
+<ng-template #loadingTemplate>
+  <div class="w-100 d-flex align-items-center justify-content-center" style="height: 100vh;">
+    <app-loader></app-loader>
+  </div>
+</ng-template>

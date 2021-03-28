@@ -1,0 +1,25 @@
+.h-v-100 {
+  height: 100vh;
+}
+
+.poppins {
+  font-family: 'Poppins', sans-serif;
+}
+
+.custom-scrollbar-css::-webkit-scrollbar {
+  width: 2px;
+}
+
+/* scrollbar track */
+.custom-scrollbar-css::-webkit-scrollbar-track {
+  background: #eee;
+}
+
+/* scrollbar handle */
+.custom-scrollbar-css::-webkit-scrollbar-thumb {
+  background-color: #7c7c7c;
+}
+
+.cursor {
+  cursor: pointer;
+}

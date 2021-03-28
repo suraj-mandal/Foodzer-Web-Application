@@ -1,0 +1,32 @@
+<div class="mt-4 w-100 pr-5">
+  <small *ngIf="errorStatus"
+         class="poppins text-danger d-block border border-danger rounded px-2 py-1 mb-2" style="background-color: #fff1f1;">
+    Check your username or password!
+  </small>
+  <small class="text-quote">Login to manage your account</small>
+  <!--      form to handle the login for the user, need to discuss here -->
+  <form  [formGroup]="loginForm" (ngSubmit)="onLogin()" class="mt-2">
+
+    <input type="text" class="form-control mt-3 rounded-0 pl-0 pl-3 py-3" placeholder="Username" formControlName="username" [ngClass]="{'is-invalid':loginsubmitted && l.username.errors}">
+    <div class="text-danger small" *ngIf="l.username!.invalid && (l.username!.dirty || l.username!.touched)">
+        <small *ngIf="l.username!.errors!.required">Enter your Username</small>
+
+        <small *ngIf="l.username!.errors!.minlength">Invalid Username</small>
+    </div>
+
+    <input type="password" class="form-control mt-3 rounded-0 pl-3 py-3" placeholder="Password" formControlName="password" [ngClass]="{ 'is-invalid': loginsubmitted && l.password.errors }">
+    <div class="text-danger small" *ngIf="l.password!.invalid && (l.password!.dirty||l.password!.touched)">
+        <small *ngIf="l.password!.errors!.required">Enter your Password</small>
+        <small *ngIf="l.password!.errors!.minlength">Password should be minimum 6 characters</small>
+    </div>
+
+    <a href="#" class="text-decoration-none d-block text-quote mt-2"
+       style="text-align: right;"><small>Forgot your password?</small></a>
+
+    <input  type="submit" value="Login"
+           class="btn form-control btn-success border-0 rounded-0 mt-3 poppins text-white text-uppercase"
+           style="font-size: 1rem;">
+
+
+  </form>
+</div>

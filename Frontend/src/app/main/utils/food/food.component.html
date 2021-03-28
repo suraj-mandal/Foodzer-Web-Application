@@ -1,0 +1,151 @@
+<div class="row h-100 w-100 p-0 m-0">
+  <div class="col-12 col-lg-4 p-0 m-0 d-flex flex-column shadow-lg">
+    <div style="flex: 2; background: linear-gradient(to right, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.8)), url(assets/food-display-dark.jpg) center center; background-size: cover;"
+         class="bg-dark d-flex flex-column justify-content-end"
+    >
+      <div class="p-2">
+        <h2 class="text-white poppins font-weight-bolder m-0 p-0 ml-3">
+          {{foodDetails.description.toLowerCase()}}
+        </h2>
+      </div>
+    </div>
+    <div style="flex: 5;" class="w-100">
+      <div class="row m-0 p-0 mt-3">
+        <div class="card-deck w-100 mx-auto px-2">
+          <div class="card border-0 shadow-blue position-relative overflow-hidden" style="background-color: #303EF0">
+            <div class="position-absolute" style="z-index: 1000; height: 60px; width: 60px; right: -15px; bottom: -15px;">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="#1a237e">
+                <path fill-rule="evenodd" d="M5 5a3 3 0 015-2.236A3 3 0 0114.83 6H16a2 2 0 110 4h-5V9a1 1 0 10-2 0v1H4a2 2 0 110-4h1.17C5.06 5.687 5 5.35 5 5zm4 1V5a1 1 0 10-1 1h1zm3 0a1 1 0 10-1-1v1h1z" clip-rule="evenodd" />
+                <path d="M9 11H3v5a2 2 0 002 2h4v-7zM11 18h4a2 2 0 002-2v-5h-6v7z" />
+              </svg>
+            </div>
+            <div class="card-body text-white" style="z-index: 1001;">
+              <h6 class="card-title poppins font-weight-bolder">Brand</h6>
+              <small *ngIf="foodDetails.brandOwner; else NAtemplate" class="card-text">
+                {{foodDetails.brandOwner.toLowerCase()}}</small>
+            </div>
+          </div>
+          <div class="card border-0 shadow-yellow position-relative overflow-hidden" style="background-color: rgb(255,222,3)">
+            <div class="position-absolute" style="z-index: 1000; height: 60px; width: 60px; right: -15px; bottom: -15px;">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="#f57f17">
+                <path fill-rule="evenodd" d="M6 3a1 1 0 011-1h.01a1 1 0 010 2H7a1 1 0 01-1-1zm2 3a1 1 0 00-2 0v1a2 2 0 00-2 2v1a2 2 0 00-2 2v.683a3.7 3.7 0 011.055.485 1.704 1.704 0 001.89 0 3.704 3.704 0 014.11 0 1.704 1.704 0 001.89 0 3.704 3.704 0 014.11 0 1.704 1.704 0 001.89 0A3.7 3.7 0 0118 12.683V12a2 2 0 00-2-2V9a2 2 0 00-2-2V6a1 1 0 10-2 0v1h-1V6a1 1 0 10-2 0v1H8V6zm10 8.868a3.704 3.704 0 01-4.055-.036 1.704 1.704 0 00-1.89 0 3.704 3.704 0 01-4.11 0 1.704 1.704 0 00-1.89 0A3.704 3.704 0 012 14.868V17a1 1 0 001 1h14a1 1 0 001-1v-2.132zM9 3a1 1 0 011-1h.01a1 1 0 110 2H10a1 1 0 01-1-1zm3 0a1 1 0 011-1h.01a1 1 0 110 2H13a1 1 0 01-1-1z" clip-rule="evenodd" />
+              </svg>
+            </div>
+            <div class="card-body" style="z-index: 1001;">
+              <h6 class="card-title poppins font-weight-bolder">
+                Class
+              </h6>
+              <small *ngIf="foodDetails.foodClass; else NAtemplate"
+                     class="card-text">{{foodDetails.foodClass}}</small>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row m-0 p-0 mt-4">
+        <div class="card-deck w-100 px-2 mx-auto">
+          <div class="card border-0 shadow-red border-0 position-relative overflow-hidden" style="background-color: rgb(255,2,102)">
+            <div class="position-absolute" style="z-index: 1000; height: 60px; width: 60px; right: -15px; bottom: -15px;">
+
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="#880e4f">
+                <path fill-rule="evenodd" d="M10 2a4 4 0 00-4 4v1H5a1 1 0 00-.994.89l-1 9A1 1 0 004 18h12a1 1 0 00.994-1.11l-1-9A1 1 0 0015 7h-1V6a4 4 0 00-4-4zm2 5V6a2 2 0 10-4 0v1h4zm-6 3a1 1 0 112 0 1 1 0 01-2 0zm7-1a1 1 0 100 2 1 1 0 000-2z" clip-rule="evenodd" />
+              </svg>
+            </div>
+            <div class="card-body text-white" style="z-index: 1001;">
+              <h6 class="card-title poppins font-weight-bolder">
+                Market
+              </h6>
+              <small *ngIf="foodDetails.marketCountry; else NAtemplate" class="card-text">
+                {{foodDetails.marketCountry}}
+              </small>
+            </div>
+          </div>
+          <div class="card border-0 shadow-teal position-relative overflow-hidden" style="background-color: rgb(3,218,197)">
+            <div class="position-absolute" style="z-index: 1000; height: 60px; width: 60px; right: -15px; bottom: -15px;">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="#00695c">
+                <path d="M3 1a1 1 0 000 2h1.22l.305 1.222a.997.997 0 00.01.042l1.358 5.43-.893.892C3.74 11.846 4.632 14 6.414 14H15a1 1 0 000-2H6.414l1-1H14a1 1 0 00.894-.553l3-6A1 1 0 0017 3H6.28l-.31-1.243A1 1 0 005 1H3zM16 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM6.5 18a1.5 1.5 0 100-3 1.5 1.5 0 000 3z" />
+              </svg>
+            </div>
+            <div class="card-body" style="z-index: 1001;">
+              <h6 class="card-title poppins font-weight-bolder">
+                Serving
+              </h6>
+              <small *ngIf="foodDetails.servingSize && foodDetails.servingSizeUnit; else NAtemplate"
+                     class="card-text">
+                {{foodDetails.servingSize}}{{foodDetails.servingSizeUnit}}
+              </small>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row m-0 p-0 mt-4 mx-3">
+        <button *ngIf="!isFavourite; else noFavourite" class="btn mx-2 mb-2 text-white shadow-sm rounded d-flex justify-content-center align-items-center"
+                style="background-color: #303EF0" (click)="performFavouriteAction()">
+          <small class="poppins font-weight-normal">Add to Favourites</small>
+        </button>
+        <button *ngIf="!isMeal; else noMeal" class="btn mx-2 mb-2 rounded d-flex justify-content-center align-items-center"
+                style="background-color: #c3c3c3;"
+                (click)="performMealAction()"
+        >
+          <small class="poppins font-weight-bolder">Add to Meal</small>
+        </button>
+        <button *ngIf="!isRecommended; else noRecommend" class="btn mx-2 mb-2 rounded d-flex justify-content-center align-items-center"
+                style="background-color: #c3c3c3;" (click)="performRecommendationAction()"
+        >
+          <small class="poppins font-weight-bolder">Add to Recommendation</small>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="col-12 col-lg-8 bg-light">
+    <div class="pt-4 pb-3">
+      <h5 class="poppins font-weight-bolder">Nutrition Table</h5>
+    </div>
+    <div class="w-100">
+      <div class="bg-white shadow-sm mb-2 rounded overflow-hidden">
+        <!--        for the header-->
+        <div class="row m-0 p-2 text-white font-weight-bolder" style="background-color: #303EF0">
+          <div class="col-4 p-2 pl-3 m-0">Name</div>
+          <div class="col-2 p-2 m-0">Amount</div>
+          <div class="col-1 p-2 m-0">Unit</div>
+          <div class="col-5 p-2 m-0">Description</div>
+        </div>
+        <!--        for the body-->
+        <div class="custom-scrollbar-css" style="max-height: 60vh; overflow-y: auto;">
+          <div *ngFor="let foodNutrient of foodDetails.foodNutrients" class="row m-0 p-2 food-row">
+            <div class="col-4"><small class="font-weight-bolder">{{foodNutrient.nutrient.name}}</small></div>
+            <div class="col-2"><small>{{foodNutrient.amount}}</small></div>
+            <div class="col-1"><small>{{foodNutrient.nutrient.unitName}}</small></div>
+            <div class="col-5"><small>{{foodNutrient.foodNutrientDerivation.description}}</small></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #NAtemplate>
+  <small class="card-text">N/A</small>
+</ng-template>
+
+<ng-template #noFavourite>
+  <button class="btn mx-2 mb-2 text-white shadow-sm rounded d-flex justify-content-center align-items-center"
+          style="background-color: rgb(255,2,102)" (click)="performFavouriteAction()">
+    <small class="poppins font-weight-normal">Remove from Favourites</small>
+  </button>
+</ng-template>
+
+<ng-template #noRecommend>
+  <button class="btn mx-2 mb-2 text-white shadow-sm rounded d-flex justify-content-center align-items-center"
+          style="background-color: rgb(255,2,102)" (click)="performRecommendationAction()">
+    <small class="poppins font-weight-normal">Remove from Recommendations</small>
+  </button>
+</ng-template>
+
+<ng-template #noMeal>
+  <button class="btn mx-2 mb-2 rounded d-flex justify-content-center align-items-center"
+          style="background-color: #c3c3c3;"
+          (click)="performMealAction()"
+  >
+    <small class="poppins font-weight-bolder">Remove from Meal</small>
+  </button>
+</ng-template>

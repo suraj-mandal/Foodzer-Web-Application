@@ -1,0 +1,16 @@
+.header-main {
+  height:100vh;
+  background-size: cover;
+  background-position: center center;
+}
+
+.header-banner {
+  bottom: 0;
+  font-family: 'Poppins', sans-serif;
+  font-weight: bold;
+}
+
+.header-banner-text {
+  font-size: 3rem;
+}
+

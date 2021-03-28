@@ -1,0 +1,264 @@
+.poppins {
+  font-family: 'Poppins', sans-serif;
+}
+
+.h-v-100 {
+  height: 100vh;
+}
+
+.h-v-80 {
+  height: 80vh;
+}
+
+.h-v-60 {
+  height: 60vh;
+}
+
+.bg-blue {
+  background-color: #303EF0;
+}
+
+.bg-gray {
+  background-color: #E1E1E1;
+}
+
+.ripple-gray {
+  background-position: center;
+  transition: background 0.8s;
+}
+.ripple-gray:hover {
+  background: #E1E1E1 radial-gradient(circle, transparent 1%, #E1E1E1 1%) center/15000%;
+}
+.ripple-gray:active {
+  background-color: #efefef;
+  background-size: 100%;
+  transition: background 0s;
+}
+
+.ripple-blue {
+  background-position: center;
+  transition: background 0.8s;
+}
+.ripple-blue:hover {
+  background: #303EF0 radial-gradient(circle, transparent 1%, #303EF0 1%) center/15000%;
+}
+.ripple-blue:active {
+  background-color: #0018be;
+  background-size: 100%;
+  transition: background 0s;
+}
+
+.search {
+  --background: #fff;
+  --text-color: #414856;
+  --primary-color: #303EF0;
+  --border-radius: 10px;
+  --width: 300px;
+  --height: 55px;
+  background: var(--background);
+  width: auto;
+  height: var(--height);
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--border-radius);
+  box-shadow: 0 10px 30px rgba(65, 72, 86, .05);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.search input[type="text"] {
+  position: relative;
+  width: var(--height);
+  height: var(--height);
+  font: 400 16px 'Varela Round', sans-serif;
+  color: var(--text-color);
+  border: 0;
+  box-sizing: border-box;
+  outline: none;
+  padding: 0 0 0 40px;
+  transition: width 0.6s ease;
+  z-index: 10;
+  opacity: 0;
+  cursor: pointer;
+}
+.search input[type="text"]:focus {
+  z-index: 0;
+  opacity: 1;
+  width: var(--width);
+}
+.search input[type="text"]:focus ~ .symbol::before {
+  width: 0%;
+}
+.search input[type="text"]:focus ~ .symbol:after {
+  clip-path: inset(0% 0% 0% 100%);
+  transition: clip-path 0.04s linear 0.105s;
+}
+.search input[type="text"]:focus ~ .symbol .cloud {
+  top: -30px;
+  left: -30px;
+  transform: translate(0, 0);
+  transition: all 0.6s ease;
+}
+.search input[type="text"]:focus ~ .symbol .lens {
+  top: 20px;
+  left: 15px;
+  transform: translate(0, 0);
+  fill: var(--primary-color);
+  transition: top 0.5s ease 0.1s, left 0.5s ease 0.1s, fill 0.3s ease;
+}
+.search .symbol {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.search .symbol:before {
+  content: "";
+  position: absolute;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--primary-color);
+  z-index: -1;
+  transition: width 0.6s ease;
+}
+.search .symbol:after {
+  content: "";
+  position: absolute;
+  top: 21px;
+  left: 21px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--primary-color);
+  z-index: 1;
+  clip-path: inset(0% 0% 0% 0%);
+  transition: clip-path 0.04s linear 0.225s;
+}
+.search .symbol .cloud, .search .symbol .lens {
+  position: absolute;
+  fill: #fff;
+  stroke: none;
+  top: 50%;
+  left: 50%;
+}
+.search .symbol .cloud {
+  width: 35px;
+  height: 32px;
+  transform: translate(-50%, -60%);
+  transition: all 0.6s ease;
+}
+.search .symbol .lens {
+  fill: #fff;
+  width: 16px;
+  height: 16px;
+  z-index: 2;
+  top: 24px;
+  left: 24px;
+  transition: top 0.3s ease, left 0.3s ease, fill 0.2s ease 0.2s;
+}
+
+
+/* DIVIDER SECTION */
+.divider
+{
+  position: relative;
+  margin-top: 90px;
+  height: 1px;
+}
+
+.div-transparent:before
+{
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 5%;
+  right: 5%;
+  width: 90%;
+  height: 1px;
+  background-image: linear-gradient(to right, transparent, rgb(48,49,51), transparent);
+}
+
+.div-dot:after
+{
+  content: "";
+  position: absolute;
+  z-index: 1;
+  top: -9px;
+  left: calc(50% - 9px);
+  width: 18px;
+  height: 18px;
+  background-color: #303EF0;
+  border: 1px solid rgb(48,49,51);
+  border-radius: 50%;
+  box-shadow: inset 0 0 0 2px white,
+  0 0 0 4px white;
+}
+
+section.pricing {
+  background: linear-gradient(to right, #efefef, #ffffff);
+}
+
+.pricing .card {
+  border: none;
+  border-radius: 1rem;
+  transition: all 0.2s;
+  box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);
+}
+
+.pricing hr {
+  margin: 1.5rem 0;
+}
+
+.pricing .card-title {
+  margin: 0.5rem 0;
+  font-size: 0.9rem;
+  letter-spacing: .1rem;
+  font-weight: bold;
+}
+
+.pricing .card-price .period {
+  font-size: 0.8rem;
+}
+
+.pricing .card-price {
+  font-size: 3rem;
+  margin: 0;
+}
+
+
+
+.pricing ul li {
+  margin-bottom: 1rem;
+}
+
+.pricing .text-muted {
+  opacity: 0.7;
+}
+
+.pricing .btn {
+  font-size: 80%;
+  border-radius: 5rem;
+  letter-spacing: .1rem;
+  font-weight: bold;
+  padding: 1rem;
+  opacity: 0.7;
+  transition: all 0.2s;
+}
+
+/* Hover Effects on Card */
+
+@media (min-width: 992px) {
+  .pricing .card:hover {
+    margin-top: -.25rem;
+    margin-bottom: .25rem;
+    box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.3);
+  }
+  .pricing .card:hover .btn {
+    opacity: 1;
+  }
+}

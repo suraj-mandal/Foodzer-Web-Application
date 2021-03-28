@@ -1,0 +1,67 @@
+<div class="row w-100 h-v-100 p-0 m-0 overflow-hidden">
+  <div class="col-12 shadow-sm p-0 m-0">
+    <!--    favourite foods display section -->
+    <div *ngIf="recommendedFoodLoading; else displayRecommendedFoods"
+         class="w-100 h-v-100 d-flex align-items-center justify-content-center">
+      <app-loader></app-loader>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="curFoodDisplayStatus" class="position-fixed w-100 h-v-100 bg-primary"
+     style="top: 0; right: 0">
+  <div class="p-2 d-flex flex-row-reverse">
+    <button class="btn" (click)="returnToRecommendedFoodDisplay()">
+      <img src="assets/icons/close.svg"
+           alt="close-button"
+           style="height: 25px; width: 25px;">
+    </button>
+  </div>
+  <div class="d-flex justify-content-center align-items-center">
+    <div class="bg-white shadow rounded position-relative"
+         style="height: 85vh; width: 90vw; overflow-y: auto; overflow-x: hidden;">
+      <app-food [foodDetails]="currentFood"
+                [isFavourite]="currentFoodFavourite"
+                [isRecommended]="currentFoodRecommended"
+                [isMeal]="currentFoodMeal"
+      ></app-food>
+    </div>
+  </div>
+</div>
+
+
+<ng-template #displayRecommendedFoods>
+  <div class="w-100 h-v-100 px-2 custom-scrollbar-css" style="overflow-x: hidden; overflow-y: auto">
+    <div>
+      <h3 class="poppins font-weight-bold mb-0 m-3 mt-4">
+        Foods recommended by others</h3>
+      <hr>
+    </div>
+    <div class="card-deck mx-auto my-2 pl-3">
+      <div *ngFor="let food of allRecommendedFoods" class="d-flex shadow flex-row m-3 overflow-hidden rounded" style="width: 30rem; min-height: 10rem;">
+        <div class="d-flex flex-column my-4 mx-3" style="flex: 5">
+          <div class="d-flex align-items-center cursor" style="flex: 1;" (click)="displayFoodDetails(food)">
+            <div class="my-4">
+              <p class="text-uppercase poppins font-weight-bold" style="color: #001c66;">{{food.dataType}}</p>
+              <h4 class="mb-0 poppins font-weight-bold">{{food.description.toLowerCase()}}</h4>
+              <small class="text-muted">Recommended by {{food.persons.toString()}} people</small>
+              <p class="mt-3">{{food.brandOwner}}</p>
+            </div>
+          </div>
+          <div>
+            <button *ngIf="!isFavourite(food.fdcId.toString()); else noFavourite"
+                    class="btn btn-primary" (click)="addFavourite(food.fdcId.toString())">Add to favourites</button>
+            <ng-template #noFavourite>
+              <button class="btn btn-danger" (click)="removeFavourite(food.fdcId.toString())">Remove from favourites</button>
+            </ng-template>
+          </div>
+        </div>
+        <div class="position-relative overflow-hidden" style="flex: 4; background: url('assets/food_header_background_2.jpg') center center; background-size: cover;">
+          <div class="position-absolute w-100 h-100" style="top: 0; bottom: 0; right: 0;
+          background: linear-gradient(to right, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0))">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>

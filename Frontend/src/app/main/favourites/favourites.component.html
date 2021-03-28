@@ -1,0 +1,158 @@
+<div *ngIf="!noFavouriteFoods; else displayNoFavourite" class="row w-100 h-v-100 p-0 m-0 overflow-hidden">
+  <div class="col-12 shadow-sm p-0 m-0">
+    <!--    favourite foods display section -->
+    <div *ngIf="foodListLoading; else displayFavouriteFoods"
+         class="w-100 h-v-100 d-flex align-items-center justify-content-center">
+      <app-loader></app-loader>
+    </div>
+  </div>
+</div>
+
+<ng-template #displayNoFavourite>
+  <div class="w-100 h-v-100 d-flex justify-content-center align-items-center">
+    <div class="text-center">
+      <img src="assets/favourite_svg.svg" alt="" style="height: 300px; width: 400px;">
+      <p class="text-muted poppins">You don't have any favourite foods! Make something your favourite ASAP!</p>
+    </div>
+  </div>
+</ng-template>
+
+<div *ngIf="curFoodDisplayStatus" class="position-fixed w-100 h-v-100 bg-primary"
+     style="top: 0; right: 0">
+  <div class="p-2 d-flex flex-row-reverse">
+    <button class="btn" (click)="returnToFavouriteFoodDisplay()">
+      <img src="assets/icons/close.svg"
+           alt="close-button"
+           style="height: 25px; width: 25px;">
+    </button>
+  </div>
+  <div class="d-flex justify-content-center align-items-center">
+    <div class="bg-white shadow rounded position-relative"
+         style="height: 85vh; width: 90vw; overflow-y: auto; overflow-x: hidden;">
+      <app-food [foodDetails]="currentFood"
+                [isFavourite]="true"
+                [isRecommended]="isCurRecommendedFood" [isMeal]="isMealFood"></app-food>
+    </div>
+  </div>
+</div>
+
+
+<ng-template #displayFavouriteFoods>
+  <div class="w-100 h-v-100 px-2 custom-scrollbar-css" style="overflow-x: hidden; overflow-y: auto">
+    <div class="d-flex align-items-center justify-content-between">
+      <h3 class="poppins h3 mt-3 mx-2 font-weight-bolder">Your favourite foods</h3>
+      <div class="form-check d-flex align-items-center">
+        <label class="switch mb-0">
+          <input id="brand" type="checkbox" [(ngModel)]="brandDisplay">
+          <span class="slider round"></span>
+        </label>
+        <small *ngIf="brandDisplay; else listView" class="poppins font-weight-bold mx-2"
+               style="width: 5rem;">List</small>
+        <ng-template #listView><small class="poppins font-weight-bold mx-2" style="width: 5rem;">Brand</small>
+        </ng-template>
+      </div>
+    </div>
+    <div *ngIf="!brandDisplay; else brandWiseDisplay" class="w-100 m-0 p-0">
+      <div class="card-deck mx-auto my-2">
+        <div class="m-3" *ngFor="let food of foodList">
+          <div class="property-card">
+            <div>
+              <div class="property-image pointer" (click)="displayCurrentFood(food)">
+                <div *ngIf="isThisRecommended(food.fdcId.toString())"
+                     class="position-absolute" style="height: 20px; width: 30px; top: -7px; right: 10px;">
+                  <svg class="bookmark-hover" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="rgb(3,218,197)">
+                    <path d="M5 4a2 2 0 012-2h6a2 2 0 012 2v14l-5-2.5L5 18V4z" />
+                  </svg>
+                </div>
+                <div class="property-image-title">
+                  <h4 class="text-white poppins font-weight-bold">{{food.description.toString().toUpperCase()}}</h4>
+                </div>
+              </div>
+            </div>
+            <div class="property-description">
+              <h6 class="poppins font-weight-bold mt-2">{{food.description.toString().toUpperCase()}}</h6>
+              <p class="mt-3" *ngIf="food.brandOwner; else noBrandOwner">{{food.brandOwner}}</p>
+              <ng-template #noBrandOwner>
+                <p class="mt-3">No brand</p>
+              </ng-template>
+              <small class="text-muted d-block mt-4 poppins font-weight-bold">{{food.dataType}}</small>
+            </div>
+            <div>
+              <div class="d-flex">
+                <!-- I would usually put multipe divs inside here set to flex. Some people might use Ul li. Multiple Solutions -->
+                <div (click)="deleteFoodItem(food)">
+                  <svg class="property-social-icons"  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd" />
+                  </svg>
+                </div>
+                <div (click)="performRecommendedAction(food)">
+                  <svg class="property-social-icons icon-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                    <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z" />
+                    <path fill-rule="evenodd" d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3z" clip-rule="evenodd" />
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #brandWiseDisplay>
+  <div class="w-100 m-0 p-0 ml-3" *ngFor="let brand of brandsDisplayObject | keyvalue">
+    <div class="mt-3 mr-3 d-flex align-items-center justify-content-between">
+      <p class="poppins font-weight-bold mb-0">{{brand.key}}</p>
+      <button #toggleButton class="btn m-0 p-0 mr-3" (click)="toggleCollapse(element, toggleButton)">
+        <svg style="height: 20px; width: 20px;" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+        </svg>
+      </button>
+    </div>
+    <hr class="mr-3">
+    <div #element class="card-deck mx-auto my-2">
+      <div class="m-3" *ngFor="let food of brand.value">
+        <div class="property-card">
+          <div>
+            <div class="property-image pointer" (click)="displayCurrentFood(food)">
+              <div *ngIf="isThisRecommended(food.fdcId.toString())"
+                   class="position-absolute" style="height: 20px; width: 30px; top: -7px; right: 10px;">
+                <svg class="bookmark-hover" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="rgb(3,218,197)">
+                  <path d="M5 4a2 2 0 012-2h6a2 2 0 012 2v14l-5-2.5L5 18V4z" />
+                </svg>
+              </div>
+              <div class="property-image-title">
+                <h4 class="text-white poppins font-weight-bold">{{food.description.toString().toUpperCase()}}</h4>
+              </div>
+            </div>
+          </div>
+          <div class="property-description">
+            <h6 class="poppins font-weight-bold mt-2">{{food.description.toString().toUpperCase()}}</h6>
+            <p class="mt-3" *ngIf="food.brandOwner; else noBrandOwner">{{food.brandOwner}}</p>
+            <ng-template #noBrandOwner>
+              <p class="mt-3">No brand</p>
+            </ng-template>
+            <small class="text-muted d-block mt-4 poppins font-weight-bold">{{food.dataType}}</small>
+          </div>
+          <div>
+            <div class="d-flex">
+              <!-- I would usually put multipe divs inside here set to flex. Some people might use Ul li. Multiple Solutions -->
+              <div (click)="deleteFoodItem(food)">
+                <svg class="property-social-icons"  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd" />
+                </svg>
+              </div>
+              <div>
+                <svg class="property-social-icons icon-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                  <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z" />
+                  <path fill-rule="evenodd" d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3z" clip-rule="evenodd" />
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>

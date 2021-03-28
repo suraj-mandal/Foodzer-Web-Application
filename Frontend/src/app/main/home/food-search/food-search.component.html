@@ -1,0 +1,195 @@
+<!--<div class="w-50">-->
+<!--  <div class="w-75 mx-auto">-->
+<!--    <form (ngSubmit)="emitFoodItem($event)">-->
+<!--      <div class="rounded-pill shadow-sm overflow-hidden">-->
+<!--        <div class="input-group">-->
+<!--          <input type="search" name="foodsearch" placeholder="Search for food item" aria-describedby="button-addon1"-->
+<!--                 class="form-control border-0 bg-translucent font-weight-bold text-dark" style="padding: 25px 20px;">-->
+<!--          <div class="input-group-append">-->
+<!--            <button id="button-addon1" type="submit" class="btn text-white bg-translucent-blue"><i class="fas fa-search"></i></button>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </form>-->
+<!--  </div>-->
+<!--</div>-->
+
+<!-- Main section that will contain the food search things and stuff-->
+<div class="container-fluid p-0 m-0 w-100">
+<!--  Search area here-->
+  <div id="search-section" class="d-flex flex-row mt-4 mx-4 align-items-center justify-content-between">
+    <h4 class="h4 poppins font-weight-bold m-0 p-0">Search</h4>
+    <div (click)="featureSearch()">
+      <img src="assets/icons/search.svg" alt="search" class="search-icon">
+    </div>
+  </div>
+  <small *ngIf="foodQuery.query !== ''; else noFoodTemplate" class="mx-4 mt-2 small poppins ">
+    Food Selected:
+    <strong class="bg-blue text-white px-2 ml-2 rounded-pill">
+      <span>{{foodQuery.query}}</span>
+    </strong>
+  </small>
+  <!--  Filter section -->
+  <div id="filter-section" class="m-4">
+    <h4 class="h4 poppins font-weight-bold m-0 p-0">Filters</h4>
+    <div id="food-dataType" class="mt-3">
+      <h6>FoodTypes</h6>
+      <hr>
+<!--      Branded -->
+      <div class="row m-0 p-0">
+        <div class="form-check col-12 col-lg-6">
+          <input type="checkbox"
+                 class="form-check-input"
+                 [disabled]="foodQuery.query === ''"
+                 style="margin-top: 0.4rem;"
+                 value="Branded"
+                 id="branded"
+                 (change)="addFoodType($event)"
+          >
+          <label for="branded" class="form-check-label">Branded</label>
+        </div>
+        <div class="form-check col-12 col-lg-6">
+          <input type="checkbox"
+                 class="form-check-input"
+                 [disabled]="foodQuery.query === ''"
+                 style="margin-top: 0.4rem;"
+                 value="SR Legacy"
+                 (change)="addFoodType($event)"
+                 id="sr-legacy">
+          <label for="sr-legacy" class="form-check-label">SR Legacy</label>
+        </div>
+      </div>
+      <div class="row m-0 p-0">
+        <div class="form-check col-12 col-lg-6">
+          <input type="checkbox"
+                 class="form-check-input"
+                 [disabled]="foodQuery.query === ''"
+                 style="margin-top: 0.4rem;"
+                 value="Sample"
+                 (change)="addFoodType($event)"
+                 id="sample">
+          <label for="sample" class="form-check-label">Sample</label>
+        </div>
+        <!--      Experimental-->
+        <div class="form-check col-12 col-lg-6">
+          <input type="checkbox"
+                 [disabled]="foodQuery.query === ''"
+                 class="form-check-input"
+                 style="margin-top: 0.4rem;"
+                 value="Abridged"
+                 (change)="addFoodType($event)"
+                 id="experimental">
+          <label for="experimental" class="form-check-label">Abridged</label>
+        </div>
+      </div>
+
+<!--      SR Legacy -->
+<!--     Sample-->
+      <div class="row m-0 p-0">
+        <div class="form-check col-12 col-lg-6">
+          <input type="checkbox"
+                 class="form-check-input"
+                 [disabled]="foodQuery.query === ''"
+                 style="margin-top: 0.4rem;"
+                 value="Foundation"
+                 (change)="addFoodType($event)"
+                 id="foundation">
+          <label for="sample" class="form-check-label">Foundation</label>
+        </div>
+        <!--      Experimental-->
+        <div class="form-check col-12 col-lg-6">
+          <input type="checkbox"
+                 [disabled]="foodQuery.query === ''"
+                 class="form-check-input"
+                 style="margin-top: 0.4rem;"
+                 value="Survey"
+                 (change)="addFoodType($event)"
+                 id="survey">
+          <label for="experimental" class="form-check-label">Survey</label>
+        </div>
+      </div>
+
+    </div>
+
+<!--    BRAND SEARCH HERE -->
+    <div id="brand-search" class="mt-3">
+      <h6>Brands</h6>
+      <hr>
+      <div *ngIf="brandedStatus; else brandsAbsent">
+        <div *ngIf="loadingStatus; else brandsLoaded">
+          <small>Loading brands...</small>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ELSE BLOCKS -->
+
+<ng-template #noFoodTemplate>
+  <em class="mx-4 mt-2 small">
+    Search for food items here
+  </em>
+</ng-template>
+
+
+<ng-template #brandsAbsent>
+  <div>
+    <em class="small">Select branded option to avail brands.</em>
+  </div>
+</ng-template>
+
+<ng-template #brandsLoaded>
+  <div class="w-100 position-relative">
+    <form action="#">
+      <div class="input-group mb-2 shadow-sm border-0">
+        <input type="text" name="brandName" class="form-control form-control-sm brand-input border-0" id="brandInput"
+               placeholder="Enter brand name here..."
+               [value]="brandName"
+               (input)="filterBrandNames($event)"
+        >
+        <div class="input-group-append">
+          <button type="submit" class="input-group-text bg-primary border-0">
+            <img src="assets/icons/search-white.svg" style="width: 15px; height: 15px;" alt="">
+          </button>
+        </div>
+      </div>
+    </form>
+    <div *ngIf="filteredBrands.length > 0" class="position-absolute bg-white shadow-sm rounded-sm custom-scrollbar-css"
+         style="max-height: 125px; width: 100%; z-index: 1001;
+         overflow-y: auto; overflow-x: hidden">
+      <div class="row w-100 m-0 p-0">
+        <button *ngFor="let currentBrand of filteredBrands"
+          class="col-12 py-1 btn rounded-0 text-sm-left"
+          (click)="searchAddBrand(currentBrand)">
+          <small class="mx-1 text-dark small font-weight-normal poppins">{{currentBrand.toLowerCase()}}</small>
+        </button>
+      </div>
+    </div>
+    <div *ngIf="this.foodQuery.brandOwner !== ''" class="small poppins d-flex flex-row mt-3">
+      <div class="rounded-pill bg-success overflow-hidden px-2 py-1">
+        <span class="text-white font-weight-bold">{{this.foodQuery.brandOwner.toLowerCase()}}</span>
+      </div>
+    </div>
+  </div>
+  <hr>
+</ng-template>
+
+<!-- SEARCH OVERLAY -->
+<div *ngIf="searchStatus" class="position-fixed search-status-box">
+  <div class="d-flex w-100 flex-row-reverse">
+    <button class="btn text-white poppins p-3" (click)="searchStatus = !searchStatus">
+      <img src="assets/icons/close.svg"
+           alt="close-button"
+           style="height: 25px; width: 25px;">
+    </button>
+  </div>
+  <div class="w-100 container">
+    <form class="w-100" (ngSubmit)="extractFoodName($event)">
+      <input type="text" placeholder="Search for your food here..." class="form-control border-0 shadow px-4 py-4" name="foodName">
+    </form>
+  </div>
+</div>
+
+
+

@@ -1,0 +1,41 @@
+.flex-1 {
+  flex: 1;
+}
+
+.food-icon-logo {
+  border: 2.5px solid #F1F1FF;
+  padding: 2px 6px;
+  font-size: 1.3rem;
+  font-weight: 400;
+  color: #F1F1FF;
+}
+
+.poppins {
+  font-family: 'Poppins', serif;
+}
+
+.icon-size {
+  font-size: 1.5rem;
+}
+
+.icon {
+  height: 30px;
+  width: 30px;
+}
+
+.h-v-100 {
+  height: 100vh;
+}
+
+.food-icon {
+  font-size: 1.4rem;
+  color: #070507;
+}
+
+.active {
+  background-color: #F5F4F6;
+}
+
+.icon-overlay:hover {
+  background-color: #F5F4F6;
+}

@@ -1,0 +1,56 @@
+<div class="mt-4 w-100 pr-5">
+    <small class="text-quote">Register to create a new account</small>
+    <!--      form to handle the registration for the user, need to discuss here -->
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="mt-2" >
+        <div class="row align-items-center">
+            <div class="col">
+                <input type="text" class="form-control rounded-0 pl-0 pl-3 py-3" placeholder="First Name" formControlName="firstname" [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }">
+            </div>
+            <div class="col">
+                <input type="text" class="form-control rounded-0 pl-0 pl-3 py-3" placeholder="Last Name" formControlName="lastname" [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }">
+            </div>
+        </div>
+      <div class="row text-danger small">
+        <div class="col">
+          <div *ngIf="f.firstname!.invalid && (f.firstname!.dirty||f.firstname!.touched)">
+            <small *ngIf="f.firstname!.errors!.required">Enter your FirstName</small>
+            <small *ngIf="f.firstname!.errors!.minlength">FirstName must contain atleast 2 characters</small>
+            <small *ngIf="f.firstname!.errors!.maxlength">FirstName mustnot exceed 24 characters</small>
+          </div>
+        </div>
+        <div class="col">
+          <div *ngIf="f.lastname!.invalid && (f.lastname!.dirty || f.lastname!.touched)">
+            <small *ngIf="f.lastname!.errors!.required">Enter your LastName</small>
+            <small *ngIf="f.lastname!.errors!.minlength">LastName must contain atleast 2 characters</small>
+            <small *ngIf="f.lastname!.errors!.maxlength">LastName mustnot exceed 24 characters</small>
+          </div>
+        </div>
+      </div>
+      <input type="text" class="form-control mt-3 rounded-0 pl-0 pl-3 py-3" placeholder="Email" formControlName="email" pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$" [ngClass]="{'is-invalid':submitted && f.email.errors}">
+            <div class="text-danger small" *ngIf="f.email!.invalid && (f.email!.dirty || f.email!.touched)">
+                <small *ngIf="f.email!.errors!.required">Enter your Email-Id</small>
+                <small *ngIf="f.email!.errors!.pattern">Invalid email</small>
+            </div>
+      <input type="text" class="form-control mt-3 rounded-0 pl-0 pl-3 py-3" placeholder="Username" formControlName="username" [ngClass]="{'is-invalid':submitted && f.username.errors}">
+            <div class="text-danger small" *ngIf="f.username!.invalid && (f.username!.dirty || f.username!.touched)">
+                <small *ngIf="f.username!.errors!.required">Enter your Username</small>
+                <small *ngIf="f.username!.errors!.minlength">Invalid Username</small>
+            </div>
+      <input type="password" class="form-control mt-3 rounded-0 pl-3 py-3" placeholder="Password" formControlName="password" [ngClass]="{ 'is-invalid': submitted && f.password.errors }">
+            <div class="text-danger small" *ngIf="f.password!.invalid && (f.password!.dirty||f.password!.touched)">
+                <small *ngIf="f.password!.errors!.required">Enter your Password</small>
+                <small *ngIf="f.password!.errors!.minlength">Password should be minimum 6 characters</small>
+            </div>
+      <input type="password" class="form-control mt-3 rounded-0 pl-3 py-3" placeholder="Confirm Password" formControlName="confirmPassword" [ngClass]="{ 'is-invalid': submitted && f.confirmPassword.errors }">
+            <div class="text-danger small" *ngIf="f.confirmPassword!.invalid && (f.confirmPassword!.dirty||f.confirmPassword!.touched)">
+                <small *ngIf="f.confirmPassword!.errors!.required">Re-enter Password</small>
+                <small *ngIf="f.confirmPassword!.errors!.mustmatchvalidator">Passwords must match</small>
+            </div>
+      <!-- <a href="#" class="text-decoration-none d-block text-quote mt-2"
+         style="text-align: right;"><small>Forgot your password?</small></a> -->
+      <input type="submit" value="Register"
+             class="btn form-control btn-success border-0 rounded-0 mt-3 poppins text-white text-uppercase"
+             style="font-size: 1rem;">
+    </form>
+  </div>
+

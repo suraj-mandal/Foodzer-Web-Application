@@ -1,0 +1,39 @@
+.cursor-pointer-custom {
+  cursor: pointer;
+}
+
+
+.active-fill {
+  fill: #303ef0
+}
+
+.inactive-fill {
+  fill: #b1b1b1;
+}
+
+.btn:focus,.btn:active {
+  outline: none !important;
+  box-shadow: none;
+}
+
+.shadow-blue{box-shadow:0 .5rem 1rem rgba(48,62,240,.4)!important}
+
+.shadow-red{box-shadow:0 .5rem 1rem rgba(255,2,102,.4)!important}
+
+.shadow-yellow{box-shadow:0 .5rem 1rem rgba(255,222,3,.4)!important}
+
+.shadow-teal{box-shadow:0 .5rem 1rem rgba(3,218,197,.4)!important}
+
+.custom-scrollbar-css::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* scrollbar track */
+.custom-scrollbar-css::-webkit-scrollbar-track {
+  background: #eee;
+}
+
+/* scrollbar handle */
+.custom-scrollbar-css::-webkit-scrollbar-thumb {
+  background-color: #c3c3c3;
+}

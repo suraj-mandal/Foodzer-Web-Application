@@ -1,0 +1,97 @@
+<div class="d-flex flex-column h-v-100 justify-content-between">
+  <!--    ROUTES TO IMPLEMENT WHEN CLICKING THE NAV LINKS HERE -->
+  <div class="d-flex flex-column justify-content-start align-items-center">
+    <div class="mb-3 mt-4 poppins">
+      <a class="text-decoration-none font-weight-bold food-icon">FZ</a>
+    </div>
+    <div *ngIf="urlRoutes['/']; else homeInactive"
+      class="my-1 text-center p-3 active icon-overlay">
+      <!--        Home -> default component -->
+      <a routerLink='' title="Home" (click)="getLocationDetails()">
+        <img src="assets/icons/home-filled.svg" alt="" class="icon">
+      </a>
+    </div>
+    <div *ngIf="urlRoutes['/meal']; else mealInactive;" class="mb-1 p-3 text-center active icon-overlay">
+      <!--        Meal Creator -->
+      <a routerLink='meal' class="text-white" title="Meal creator" (click)="getLocationDetails()">
+        <img src="assets/icons/meal-create-filled.svg" alt="meal" class="icon">
+      </a>
+    </div>
+    <div *ngIf="urlRoutes['/favorites']; else favouriteInactive" class="mb-1 p-3 text-center active icon-overlay">
+      <!--  Favourites -->
+      <a routerLink='favorites' class="text-white" title="Favorites" (click)="getLocationDetails()">
+        <img src="assets/icons/favourite-filled.svg" alt="favourites" class="icon">
+      </a>
+    </div>
+    <div *ngIf="urlRoutes['/recommended']; else recommendedInactive" class="mb-1 p-3 text-center active icon-overlay">
+      <!--        Recommended food component -->
+      <a routerLink='recommended' class="text-white" title="Recommend" (click)="getLocationDetails()">
+        <img src="assets/icons/recommended-filled.svg" alt="recommended" class="icon">
+      </a>
+    </div>
+
+  </div>
+  <div>
+    <div (mouseover)="displayUserName();" (mouseleave)="hideUserName();" class="text-center my-1 p-3 position-relative" style="cursor: pointer;">
+      <div *ngIf="userDetailsShow" class="position-absolute shadow px-2 py-2 rounded ml-3 d-flex "
+           style="top: 0.9rem; right: -8.5rem; z-index: 1100; background-color: #303EF0;">
+        <small style="color: #dbdcff;" class="poppins font-weight-bold">Username: </small> <small class="ml-2 poppins text-white">{{username}}</small>
+      </div>
+      <svg class="icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+      </svg>
+    </div>
+    <div class="text-center icon-overlay my-1 p-3">
+      <!--      go to auth component-->
+      <a href="/intro" class="text-white" title="Logout" (click)="removeToken()">
+        <img src="assets/icons/logout.svg" alt="logout" class="icon">
+      </a>
+    </div>
+  </div>
+
+</div>
+
+<ng-template #homeInactive>
+  <div class="my-1 text-center p-3 icon-overlay">
+    <!--        Home -> default component -->
+    <a routerLink='' title="Home" (click)="getLocationDetails()">
+      <img src="assets/icons/home.svg" alt="" class="icon">
+    </a>
+  </div>
+</ng-template>
+
+<ng-template #mealInactive>
+  <div class="mb-1 p-3 text-center icon-overlay">
+    <!--        Meal Creator -->
+    <a routerLink='meal' class="text-white" title="Meal creator" (click)="getLocationDetails()">
+      <img src="assets/icons/meal-create.svg" alt="meal" class="icon">
+    </a>
+  </div>
+</ng-template>
+
+<ng-template #recommendedInactive>
+  <div class="mb-1 p-3 text-center icon-overlay">
+    <!--        Recommended food component -->
+    <a routerLink='recommended' class="text-white" title="Recommend" (click)="getLocationDetails()">
+      <img src="assets/icons/recommended.svg" alt="recommended" class="icon">
+    </a>
+  </div>
+</ng-template>
+
+<ng-template #favouriteInactive>
+  <div class="mb-1 p-3 text-center icon-overlay">
+    <!--  Favourites -->
+    <a routerLink='favorites' class="text-white" title="Favorites" (click)="getLocationDetails()">
+      <img src="assets/icons/favourite.svg" alt="favourites" class="icon">
+    </a>
+  </div>
+</ng-template>
+
+<ng-template #brandsInactive>
+  <div class="mb-1 p-3 text-center icon-overlay">
+    <!--        Brands component -->
+    <a routerLink='brands' class="text-white" title="Brands" (click)="getLocationDetails()">
+      <img src="assets/icons/collection.svg" alt="brands" class="icon">
+    </a>
+  </div>
+</ng-template>

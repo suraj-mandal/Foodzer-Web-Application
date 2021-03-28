@@ -1,0 +1,180 @@
+
+<div *ngIf="start; else noResultsTemplate">
+  <div *ngIf="foodsLoadingStatus; else foodShowResults">
+    <div class="w-100 h-v-100 d-flex flex-row align-items-center justify-content-center">
+      <app-loader></app-loader>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="favouritePillDisplay"
+     id = "snackbar"
+     class="show d-flex align-items-center justify-content-center rounded shadow-blue"
+     style="
+     background-color: #303EF0;">
+  <small class="mb-0 text-white poppins font-weight-bold">Food Added to Favourites</small>
+</div>
+
+<div *ngIf="mealPillDisplay"
+     id = "snackbar2"
+     class="show d-flex align-items-center justify-content-center rounded shadow-blue"
+     style="
+     background-color: #303EF0;">
+  <small class="mb-0 text-white poppins font-weight-bold">Food added to your meal</small>
+</div>
+
+<div *ngIf="removeFavouritePillDisplay"
+     id="snackbar1"
+     class="show d-flex align-items-center justify-content-center rounded shadow-red"
+     style="background-color: rgb(255,2,102)">
+  <small class="mb-0 text-white poppins font-weight-bold">Food removed from favourites</small>
+</div>
+
+<div *ngIf="removeMealPillDisplay"
+     id="snackbar3"
+     class="show d-flex align-items-center justify-content-center rounded shadow-red"
+     style="background-color: rgb(255,2,102)">
+  <small class="mb-0 text-white poppins font-weight-bold">Food removed from your meal</small>
+</div>
+
+
+
+<div *ngIf="foodShowStatus" class="position-fixed w-100 h-v-100 bg-primary"
+     style="top: 0; right: 0">
+  <div class="p-2 d-flex flex-row-reverse">
+    <button class="btn" (click)="returnToFoodListDisplay();">
+      <img src="assets/icons/close.svg"
+           alt="close-button"
+           style="height: 25px; width: 25px;">
+    </button>
+  </div>
+  <div class="d-flex justify-content-center align-items-center">
+    <div class="bg-white shadow rounded position-relative"
+         style="height: 85vh; width: 90vw; overflow-y: auto; overflow-x: hidden;">
+      <div *ngIf="foodShowLoadingStatus; else foodDisplayTemplate">
+        <div class="w-100 d-flex flex-row align-items-center justify-content-center position-absolute"
+             style="top: 0; bottom: 0;">
+          <app-loader></app-loader>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOD DETAILS DISPLAY TEMPLATE -->
+<ng-template #foodDisplayTemplate>
+ <app-food [foodDetails]="foodDetails"
+           [isFavourite]="currentFavourite"
+           [isRecommended]="currentRecommended"
+           [isMeal]="currentMeal"
+ ></app-food>
+</ng-template>
+
+
+<ng-template #foodShowResults>
+  <div class="w-100 h-v-100 container-fluid">
+    <div class="poppins mt-4">
+      <h3 class="font-weight-bolder p-0 m-0">Results of {{food}}</h3>
+    </div>
+    <hr>
+    <div class="shadow-sm overflow-hidden rounded-sm">
+      <!--      Table header-->
+      <div class="row w-100 m-0 p-0 text-white font-weight-bolder" style="background-color: #303EF0">
+        <div class="col-4 pl-3 pr-2 py-3 d-flex align-items-center">
+          <div>Food</div>
+          <span class="cursor-pointer-custom" (click)="sort('lowercaseDescription.keyword');"><img class="m-1" src="https://img.icons8.com/material-rounded/24/ffffff/sort.png" alt="sort"
+                     style="height: 16px; width: 16px;"/></span>
+        </div>
+        <div class="col-2 px-1 py-3 d-flex align-items-center">
+          <div>Type</div>
+          <span class="cursor-pointer-custom" (click)="sort('dataType.keyword')"><img class="m-1" src="https://img.icons8.com/material-rounded/24/ffffff/sort.png" alt="sort"
+                     style="height: 16px; width: 16px;"/></span>
+        </div>
+        <div class="col-3 px-1 py-3 d-flex align-items-center">
+          <div>Brand</div>
+          <span class="cursor-pointer-custom" (click)="sort('brandOwner.keyword')"><img class="m-1" src="https://img.icons8.com/material-rounded/24/ffffff/sort.png" alt="sort"
+                     style="height: 16px; width: 16px;"/></span>
+        </div>
+        <div class="col-2 px-1 py-3 d-flex align-items-center">
+          <div>Published</div>
+          <span class="cursor-pointer-custom" (click)="sort('publishedDate')"><img class="m-1" src="https://img.icons8.com/material-rounded/24/ffffff/sort.png" alt="sort"
+                     style="height: 16px; width: 16px;"/></span>
+        </div>
+        <div class="col-1 px-1 py-3">Actions</div>
+      </div>
+      <!--      For the table body-->
+      <div class="custom-scrollbar-css bg-light" style="overflow-y: auto; max-height: 65vh;">
+        <div class="row m-0 p-0 w-100 food-row poppins rounded cursor-pointer-custom"
+             *ngFor="let currentFood of foods"
+        >
+          <div class="col-4 p-2 py-3 pl-3 d-flex align-items-center" (click)="displayFood(currentFood.fdcId)">
+            <small class="m-0 p-0 font-weight-bolder">{{currentFood.lowercaseDescription}}</small>
+          </div>
+          <div class="col-2 p-2 py-3 d-flex align-items-center" (click)="displayFood(currentFood.fdcId)">
+            <small class="p-0 m-0">{{currentFood.dataType}}</small>
+          </div>
+          <div *ngIf="currentFood.brandOwner !== undefined; else nobrand"
+               class="col-3 p-2 py-3 d-flex align-items-center" (click)="displayFood(currentFood.fdcId)">
+            <small class="m-0 p-0">{{currentFood.brandOwner.toLowerCase()}}</small>
+          </div>
+          <div class="col-2 p-2 py-3 d-flex align-items-center" (click)="displayFood(currentFood.fdcId)">
+            <small class="m-0 p-0">{{currentFood.publishedDate}}</small>
+          </div>
+          <div class="col-1 p-2 py-3 d-flex align-items-center">
+            <button class="btn p-0 m-0 d-flex justify-content-center align-items-center"
+                    style="height: 20px; width: 20px;"
+                    (click)="favouriteAction(currentFood.fdcId.toString())">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="#303EF0"
+                   [ngClass]="setFillColorFavourite(currentFood.fdcId.toString())">
+                <path
+                  d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+              </svg>
+            </button>
+            <button class="btn p-0 m-0 ml-2 d-flex justify-content-center align-items-center"
+                    style="height: 20px; width: 20px;"
+                    (click)="mealAction(currentFood.fdcId.toString())">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="#303EF0"
+                   [ngClass]="setFillColorAdd(currentFood.fdcId.toString())">
+                <path fill-rule="evenodd"
+                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z"
+                      clip-rule="evenodd"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="d-flex flex-row justify-content-between align-items-center px-3 py-1">
+        <div>
+          <small>Showing {{currentPage}} out of {{totalPages}} results</small>
+        </div>
+        <div>
+          <button [disabled]="currentPage <= 1" class="btn" (click)="decreasePages()"><small class="poppins">Prev</small></button>
+          <button [disabled]="currentPage >= totalPages" class="btn bg-gray" (click)="increasePages()"><small class="poppins">Next</small></button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+
+<ng-template #nobrand>
+  <div class="col-3 p-2 py-3 d-flex align-items-center">
+    <small class="m-0 p-0">No brand</small>
+  </div>
+</ng-template>
+
+<ng-template #noResultsTemplate>
+  <div class="bg-light w-100 h-v-100 d-flex
+        align-items-center justify-content-center">
+    <figure class="figure">
+      <img class="figure-img img-fluid"
+           style="height: 300px; width: 300px;"
+           src="assets/icons/no_search_now.svg" alt="Not found">
+      <figcaption class="figure-caption text-center poppins">
+        Keep on searching! Good things on your way
+      </figcaption>
+    </figure>
+  </div>
+</ng-template>
+

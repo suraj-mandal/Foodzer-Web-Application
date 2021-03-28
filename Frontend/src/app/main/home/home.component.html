@@ -1,0 +1,31 @@
+
+
+<!--<div class="w-100 container-fluid p-0 overflow-hidden">-->
+<!--  <div class="w-100 d-flex flex-column justify-content-center full-search-height" *ngIf="!foodItem">-->
+<!--    <div class="w-75 mx-auto">-->
+<!--      <h1 class="h1 font-weight-bold text-white my-4">Search for your favourite <br> foods here!</h1>-->
+<!--    </div>-->
+<!--    <div>-->
+<!--      <app-food-search (foodSearchEmitter)="getFoodItem($event)">-->
+<!--      </app-food-search>-->
+<!--    </div>-->
+<!--  </div>-->
+
+<!--  <div class="overflow-auto" style="height: 100vh;" *ngIf="foodItem">-->
+<!--    <app-food-display [foodItem]="foodItem"></app-food-display>-->
+<!--  </div>-->
+<!--</div>-->
+
+<div class="w-100 container-fluid p-0 overflow-hidden row m-0">
+<!--  dashboard component will be implemented here -->
+  <div class="col-3 p-0 m-0 background-dash h-v-100">
+    <app-food-search (foodSearchEmitter)="getFoodQuery($event)"></app-food-search>
+  </div>
+<!-- Table component will be displayed here -->
+  <div class="col-9 p-0 m-0 h-v-100 shadow-sm">
+    <app-food-display [foodParam]="foodParam"></app-food-display>
+  </div>
+</div>
+
+
+

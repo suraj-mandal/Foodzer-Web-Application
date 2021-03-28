@@ -1,0 +1,20 @@
+.poppins {
+  font-family: 'Poppins', sans-serif;
+}
+
+.auth-container {
+  overflow-y: auto;
+  height: 100vh;
+}
+
+.logo-image {
+  width: 35px;
+}
+
+.logo-text {
+  font-size: 1.3rem;
+}
+
+.text-quote {
+  color: #868686;
+}

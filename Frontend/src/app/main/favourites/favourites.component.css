@@ -1,0 +1,233 @@
+.h-v-100 {
+  height: 100vh;
+}
+
+.bg-gray {
+  background-color: #F5F4F6;
+}
+
+.custom-scrollbar-css::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* scrollbar track */
+.custom-scrollbar-css::-webkit-scrollbar-track {
+  background: #eee;
+}
+
+/* scrollbar handle */
+.custom-scrollbar-css::-webkit-scrollbar-thumb {
+  background-color: #c3c3c3;
+}
+
+.poppins {
+  font-family: 'Poppins', sans-serif;
+}
+
+/* The switch - the box around the slider */
+
+:root {
+  --quantifier: 1;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: calc(60px * 0.5);
+  height: calc(34px * 0.5);
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: calc(26px*0.5);
+  width: calc(26px*0.5);
+  left: calc(4px*0.5);
+  bottom: calc(4px*0.5);
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: rgb(48,62,240);
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px rgb(48,62,240);
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(calc(26px * 0.5));
+  -ms-transform: translateX(calc(26px*0.5));
+  transform: translateX(calc(26px*0.5));
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: calc(34px*0.5);
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+/*
+FOR THE FAVOURITE CARD
+*/
+
+.property-card
+{
+  height:18em;
+  width:16em;
+  display:-webkit-box;
+  display:-ms-flexbox;
+  display:flex;
+  -webkit-box-orient:vertical;
+  -webkit-box-direction:normal;
+  -ms-flex-direction:column;
+  flex-direction:column;
+  position:relative;
+  -webkit-transition:all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
+  -o-transition:all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
+  transition:all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
+  border-radius:16px;
+  overflow:hidden;
+  -webkit-box-shadow:  15px 15px 27px #e1e1e3, -15px -15px 27px #ffffff;
+  box-shadow:  15px 15px 27px #e1e1e3, -15px -15px 27px #ffffff;
+}
+/* ^-- The margin bottom is necessary for the drop shadow otherwise it gets clipped in certain cases. */
+
+/* Top Half of card, image. */
+
+.property-image
+{
+  height:6em;
+  width:16em;
+  padding:1em 2em;
+  position:Absolute;
+  top:0px;
+  -webkit-transition:all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
+  -o-transition:all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
+  transition:all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.5)), url('../../../assets/food-display-dark.jpg') no-repeat center center;
+  background-size:cover;
+}
+
+/* Bottom Card Section */
+
+.property-description
+{
+  background-color: #FAFAFC;
+  height:12em;
+  width:16em;
+  position:absolute;
+  bottom:0em;
+  -webkit-transition:all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
+  -o-transition:all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
+  transition:all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
+  padding: 0.5em 1em;
+  text-align:center;
+}
+
+/* Social Icons */
+
+.property-social-icons
+{
+  width:1.3em;
+  height:1.3em;
+  fill: #000;
+  bottom:1em;
+  position: absolute;
+  left:6.5em;
+  -webkit-transition:all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
+  -o-transition:all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
+  transition:all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+.icon-1 {
+  width:1.3em;
+  height:1.3em;
+  fill: #000;
+  bottom:1em;
+  position: absolute;
+  left:8em;
+}
+
+/* Property Cards Hover States */
+
+.property-card:hover .property-description
+{
+  height:0em;
+  padding:0px 1em;
+}
+.property-card:hover .property-image
+{
+  height:18em;
+}
+
+.property-card:hover .property-social-icons
+{
+  fill: #fff;
+}
+
+.property-card:hover .property-social-icons:hover
+{
+  fill: rgb(255,2,102);
+  cursor:pointer;
+}
+
+.icon-1:hover
+{
+  fill: rgb(3,218,197)!important;
+  cursor:pointer;
+}
+
+.bookmark-hover {
+  transition: all 0.4s ease-in-out;
+}
+
+.bookmark-hover:hover {
+  fill: rgb(3,218,197)!important;
+}
+
+.property-image-title
+{
+  text-align:center;
+  position:Relative;
+  top:30%;
+  opacity:0;
+  transition:all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1) 0.2s;
+  color:black;
+  font-size:1.2em;
+}
+
+.property-card:hover .property-image-title
+{
+  opacity:1;
+}
+

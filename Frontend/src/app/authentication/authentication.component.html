@@ -1,0 +1,55 @@
+<div class="container-fluid" style="height: 100vh;">
+  <div class="row">
+    <div class="col-lg-6 p-0 d-none d-lg-block">
+      <app-header [backgroundImageUrl]="randomImageUrl"></app-header>
+    </div>
+    <div class="col-12 col-lg-6 pl-5 pl-md-0 pr-0 pr-md-5" style="height: 100vh;">
+        <!--      <app-login></app-login>-->
+      <div class="w-100 auth-container poppins">
+        <div class="ml-md-5 pt-5 pt-md-1">
+          <div class="d-flex align-items-center mt-4 mt-md-3">
+            <img src="assets/foodzer_logo.png" alt="logo" class="logo-image">
+            <h1 class="m-0 mt-1 ml-1 logo-text font-weight-bold">Foodzer</h1>
+          </div>
+          <div class="mt-4 pr-5 pr-md-0" *ngIf="loginStatus; else registrationBanner">
+            <h1 class="m-0 font-weight-bold text-dark">Hello,</h1>
+            <h1 class="mt-1 font-weight-bold text-dark">Welcome back</h1>
+          </div>
+          <div class="row w-100">
+            <div class="col-12 col-md-10" *ngIf="loginStatus; else registrationBlock">
+              <app-login></app-login>
+            </div>
+          </div>
+          <a routerLink="/auth" (click)="toggleLoginStatus()"
+             class="d-block text-quote mt-5">
+            <small class="font-weight-bold" *ngIf="loginStatus; else loginDirectBlock">
+              Don't have an account? <span class="text-dark">Sign Up</span>
+            </small>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- WHEN THE LOGINSTATUS IS NOT ACTIVE -->
+<ng-template #registrationBlock>
+  <div class="col-12 col-md-10">
+    <app-registration [loginStatus]="loginStatus" (clickEvent)="save($event)"></app-registration>
+  </div>
+</ng-template>
+
+<!-- redirect to login page when in registration page  -->
+<ng-template #loginDirectBlock>
+<small class="font-weight-bold">Already have an account?
+  <span class="text-dark">Sign in here!</span>
+</small>
+</ng-template>
+
+<!-- show for the registration page banner -->
+<ng-template #registrationBanner>
+  <div class="mt-4 pr-5 pr-md-0">
+    <h1 class="m-0 font-weight-bold text-dark">Get Started</h1>
+  </div>
+</ng-template>
+

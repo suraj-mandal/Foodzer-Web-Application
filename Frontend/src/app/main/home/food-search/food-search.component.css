@@ -1,0 +1,82 @@
+input:focus {
+  outline-width: 0;
+}
+
+.header {
+  background: url("../../../../assets/food_search.jpg") center center;
+  background-size: cover;
+}
+
+.bg-translucent {
+  background-color: rgba(255, 255, 255, 0.7);
+}
+.bg-translucent-blue {
+  background-color: rgba(49,27,146, 0.7);
+}
+
+.bg-blue {
+  background-color: #303EF0;
+}
+
+.poppins {
+  font-family: 'Poppins', sans-serif;
+}
+
+.search-icon {
+  height: 22px;
+  width: 22px;
+  cursor: pointer;
+}
+
+.search-status-box {
+  background: rgba( 215, 215, 215, 0.35 );
+  box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+  backdrop-filter: blur( 11.0px );
+  -webkit-backdrop-filter: blur( 11.0px );
+  border-radius: 10px;
+  border: 1px solid rgba( 255, 255, 255, 0.18 );
+  width: 100vw; height: 100vh; top: 0; right:0;
+  z-index: 1000;
+}
+
+.has-search .form-control {
+  padding-left: 2.375rem;
+}
+
+.has-search .form-control-feedback {
+  position: absolute;
+  z-index: 2;
+  display: block;
+  width: 2.375rem;
+  height: 2.375rem;
+  line-height: 2.375rem;
+  text-align: center;
+  pointer-events: none;
+  color: #aaa;
+}
+
+
+
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+  outline: none;
+  box-shadow: none;
+  background-color: #fcfcfc;
+  border: none;
+}
+
+.custom-scrollbar-css::-webkit-scrollbar {
+  width: 2px;
+}
+
+/* scrollbar track */
+.custom-scrollbar-css::-webkit-scrollbar-track {
+  background: #eee;
+}
+
+/* scrollbar handle */
+.custom-scrollbar-css::-webkit-scrollbar-thumb {
+  background-color: #7c7c7c;
+}

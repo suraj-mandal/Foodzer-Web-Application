@@ -1,0 +1,52 @@
+.h-v-100 {
+  height: 100vh;
+}
+
+.poppins {
+  font-family: 'Poppins', sans-serif;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.bg-food-button {
+  background-color: #303EF0;
+}
+
+.custom-scrollbar-css::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* scrollbar track */
+.custom-scrollbar-css::-webkit-scrollbar-track {
+  background: #eee;
+}
+
+/* scrollbar handle */
+.custom-scrollbar-css::-webkit-scrollbar-thumb {
+  background-color: #c3c3c3;
+}
+
+.food-row:hover {
+  background-color: #ffffff;
+  box-shadow:
+    0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+    0 6.7px 5.3px rgba(0, 0, 0, 0.048);
+
+}
+
+.bg-nutrient {
+  background-size: cover;
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.7)), url("../../../assets/nutrients.jpg") center center;
+}
+
+.total-nutrient-display {
+  background: rgba(255,2,102, 0.7);
+  box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+  backdrop-filter: blur( 11.0px );
+  -webkit-backdrop-filter: blur( 11.0px );
+  border: 1px solid rgba( 255, 255, 255, 0.18 );
+  width: 100vw; height: 100vh; top: 0; right:0;
+  z-index: 1000;
+}
